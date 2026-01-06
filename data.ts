@@ -185,6 +185,18 @@ export const PATTERNS: Pattern[] = [
     useWhen: "Datum, telefonní čísla, PSČ.",
     why: "Snižuje frustraci z chybových hlášení u banálních formátů.",
     how: "Odstraňte mezery a pomlčky na pozadí, neobtěžujte jimi uživatele."
+  },
+
+  // 🐦 Easter egg pro kamaráda
+  {
+    id: "pidgeon-pattern",
+    name: "Pidgeon Pattern",
+    category: "Chování",
+    description: "Holub vždy najde cestu domů. Uživatel by měl taky.",
+    what: "Navigační vzor inspirovaný poštovními holuby - vždy vede uživatele zpět k cíli.",
+    useWhen: "Když se uživatel ztratí v aplikaci jako holub v bouřce.",
+    why: "Protože i holub ví, že domov je tam, kde je WiFi nejsilnější.",
+    how: "Implementujte jasné navigační prvky a breadcrumbs. A občas přidejte holuba pro radost."
   }
 ];
 

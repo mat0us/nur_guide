@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Pattern } from '../types';
 
 interface Props {
@@ -7,6 +7,57 @@ interface Props {
   related?: Pattern[];
   onRelatedClick?: (id: string) => void;
 }
+
+// 🐦 Pidgeon Pattern Easter Egg komponenta
+const PidgeonPatternExample: React.FC = () => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  return (
+    <div 
+      className="bg-white rounded-[2rem] shadow-xl border border-slate-200 p-6 sm:p-8 w-full max-w-xs h-[280px] cursor-pointer select-none group flex items-center justify-center"
+      onClick={() => setIsClicked(!isClicked)}
+    >      
+      {/* Kontejner s obrázkem a šipkami */}
+      <div className="relative flex items-center justify-center">
+        {/* Šipky ukazující na obrázek */}
+        <div className={`absolute -left-8 top-1/2 -translate-y-1/2 text-2xl transition-all duration-300 ${isClicked ? 'opacity-0 -translate-x-2' : 'opacity-100 animate-pulse'}`}>
+          👉
+        </div>
+        <div className={`absolute -right-8 top-1/2 -translate-y-1/2 text-2xl transition-all duration-300 ${isClicked ? 'opacity-0 translate-x-2' : 'opacity-100 animate-pulse'}`}>
+          👈
+        </div>
+        <div className={`absolute left-1/2 -top-8 -translate-x-1/2 text-2xl transition-all duration-300 ${isClicked ? 'opacity-0 -translate-y-2' : 'opacity-100 animate-pulse'}`}>
+          👇
+        </div>
+        <div className={`absolute left-1/2 -bottom-8 -translate-x-1/2 text-2xl transition-all duration-300 ${isClicked ? 'opacity-0 translate-y-2' : 'opacity-100 animate-pulse'}`}>
+          👆
+        </div>
+        
+        {/* Hlavní kontejner s obrázkem */}
+        <div className={`relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-4 border-white shadow-lg transition-all duration-500 ${isClicked ? 'rotate-3 scale-105' : 'group-hover:scale-105'}`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-cyan-50"></div>
+          <img 
+            src="/img/pidgeon1.png" 
+            alt="pidgeon" 
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${isClicked ? 'opacity-0 scale-110' : 'opacity-100 scale-100'}`}
+          />
+          <img 
+            src="/img/pidgeon2.png" 
+            alt="pidgeon surprised" 
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${isClicked ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+          />
+        </div>
+        
+        {/* Text pod holubem - absolutně pozicovaný */}
+        <div className={`absolute -bottom-16 left-1/2 -translate-x-1/2 text-center transition-all duration-300 whitespace-nowrap ${isClicked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+          <div className="text-xl font-black text-cyan-600">Vrrkuú!</div>
+          <div className="text-[10px] text-slate-400 mt-1">Holub tě pozdravuje</div>
+        </div>
+      </div>
+      
+    </div>
+  );
+};
 
 export const PatternCard: React.FC<Props> = ({ pattern, related, onRelatedClick }) => {
   return (
@@ -427,6 +478,8 @@ const PatternExample: React.FC<{ id: string }> = ({ id }) => {
            </div>
         </div>
       );
+    case 'pidgeon-pattern':
+      return <PidgeonPatternExample />;
     default:
       return (
         <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 h-[200px] sm:h-[240px] flex flex-col justify-center gap-4 w-full max-w-xs">
